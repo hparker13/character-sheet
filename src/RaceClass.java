@@ -24,17 +24,11 @@ public class RaceClass extends JFrame {
         taClass.setWrapStyleWord(true);
         taSubrace.setWrapStyleWord(true);
 
-//        taClass.setMaximumSize(new Dimension(100, 200));
-//        taRace.setMaximumSize(new Dimension(100, 200));
-//        taSubrace.setMaximumSize(new Dimension(100, 200));
-
 
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
         this.setTitle("Character Creation");
-        this.setMinimumSize(new Dimension(750, 300));
-//        this.setSize(750, 300);
-//        this.setMaximumSize(new Dimension(750, 500));
+
         this.pack();
         this.setVisible(true);
 
