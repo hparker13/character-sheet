@@ -26,7 +26,7 @@ public class RaceClass extends JFrame {
 
 
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        this.setLocationRelativeTo(null);
+//        this.setLocationRelativeTo(null);
         this.setTitle("Character Creation");
 
         this.pack();
