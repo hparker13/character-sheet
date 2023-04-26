@@ -1,9 +1,11 @@
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.*;
+import java.util.List;
 
 public class Stats extends JFrame {
 
@@ -43,6 +45,24 @@ public class Stats extends JFrame {
     private JSpinner        spn5;
     private JSpinner        spn6;
     private JLabel          lblPoints;
+    private JButton btnPoints1Up;
+    private JButton btnPoints1Down;
+    private JLabel lblPoints1;
+    private JLabel lblPoints2;
+    private JLabel lblPoints3;
+    private JLabel lblPoints4;
+    private JLabel lblPoints5;
+    private JLabel lblPoints6;
+    private JButton btnPoints2Up;
+    private JButton btnPoints3Up;
+    private JButton btnPoints4Up;
+    private JButton btnPoints5Up;
+    private JButton btnPoints6Up;
+    private JButton btnPoints2Down;
+    private JButton btnPoints3Down;
+    private JButton btnPoints4Down;
+    private JButton btnPoints5Down;
+    private JButton btnPoints6Down;
     private int             roll        = 0;
     private int             points      = 27;
     private int             previous1    = 8;
@@ -81,11 +101,13 @@ public class Stats extends JFrame {
 //        spn1 = new JSpinner(new SpinnerNumberModel(8, 8, 15, 1));
 
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        this.setLocationRelativeTo(null);
+//        this.setLocationRelativeTo(null);
         this.setTitle("Determine Ability Scores");
 
         this.pack();
         this.setVisible(true);
+
+        // * * * Action Listeners * * *
         btnRoll.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -154,6 +176,294 @@ public class Stats extends JFrame {
                 lblResult5.setText(String.valueOf(lstStandard.get(4)));
                 lblResult6.setText(String.valueOf(lstStandard.get(5)));
                 updateModifiers();
+            }
+        });
+        rbPoints.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                lblResult1.setText(lblPoints1.getText());
+                lblResult2.setText(lblPoints2.getText());
+                lblResult3.setText(lblPoints3.getText());
+                lblResult4.setText(lblPoints4.getText());
+                lblResult5.setText(lblPoints5.getText());
+                lblResult6.setText(lblPoints6.getText());
+                updateModifiers();
+            }
+        });
+        btnPoints1Up.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int value = Integer.parseInt(lblPoints1.getText());
+                if (value < 13 && points > 0) {
+                    value++;
+                    points--;
+                } else if (value == 13 && points > 1) {
+                    value++;
+                    points = points - 2;
+                } else if (value == 14 && points > 1) {
+                    value++;
+                    points = points - 2;
+                    btnPoints1Up.disable();
+                }
+                lblPoints1.setText(String.valueOf(value));
+                lblPoints.setText(String.valueOf(points));
+                if (rbPoints.isSelected()) {
+                    lblResult1.setText(String.valueOf(value));
+                    updateModifiers();
+                }
+            }
+        });
+        btnPoints1Down.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int value = Integer.parseInt(lblPoints1.getText());
+                if (value == 15 && points < 26) {
+                    value--;
+                    points = points + 2;
+                } else if (value == 14 && points < 26) {
+                    value--;
+                    points = points + 2;
+                } else if (value > 8 && points < 27) {
+                    value--;
+                    points++;
+                    btnPoints1Down.disable();
+                }
+                lblPoints1.setText(String.valueOf(value));
+                lblPoints.setText(String.valueOf(points));
+                if (rbPoints.isSelected()) {
+                    lblResult1.setText(String.valueOf(value));
+                    updateModifiers();
+                }
+            }
+        });
+        btnPoints2Up.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int value = Integer.parseInt(lblPoints2.getText());
+                if (value < 13 && points > 0) {
+                    value++;
+                    points--;
+                } else if (value == 13 && points > 1) {
+                    value++;
+                    points = points - 2;
+                } else if (value == 14 && points > 1) {
+                    value++;
+                    points = points - 2;
+                    btnPoints2Up.disable();
+                }
+                lblPoints2.setText(String.valueOf(value));
+                lblPoints.setText(String.valueOf(points));
+                if (rbPoints.isSelected()) {
+                    lblResult2.setText(String.valueOf(value));
+                    updateModifiers();
+                }
+            }
+        });
+        btnPoints2Down.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int value = Integer.parseInt(lblPoints2.getText());
+                if (value == 15 && points < 26) {
+                    value--;
+                    points = points + 2;
+                } else if (value == 14 && points < 26) {
+                    value--;
+                    points = points + 2;
+                } else if (value > 8 && points < 27) {
+                    value--;
+                    points++;
+                    btnPoints2Down.disable();
+                }
+                lblPoints2.setText(String.valueOf(value));
+                lblPoints.setText(String.valueOf(points));
+                if (rbPoints.isSelected()) {
+                    lblResult2.setText(String.valueOf(value));
+                    updateModifiers();
+                }
+            }
+        });
+        btnPoints3Up.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int value = Integer.parseInt(lblPoints3.getText());
+                if (value < 13 && points > 0) {
+                    value++;
+                    points--;
+                } else if (value == 13 && points > 1) {
+                    value++;
+                    points = points - 2;
+                } else if (value == 14 && points > 1) {
+                    value++;
+                    points = points - 2;
+                    btnPoints1Up.disable();
+                }
+                lblPoints3.setText(String.valueOf(value));
+                lblPoints.setText(String.valueOf(points));
+                if (rbPoints.isSelected()) {
+                    lblResult3.setText(String.valueOf(value));
+                    updateModifiers();
+                }
+            }
+        });
+        btnPoints3Down.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int value = Integer.parseInt(lblPoints3.getText());
+                if (value == 15 && points < 26) {
+                    value--;
+                    points = points + 2;
+                } else if (value == 14 && points < 26) {
+                    value--;
+                    points = points + 2;
+                } else if (value > 8 && points < 27) {
+                    value--;
+                    points++;
+                    btnPoints1Down.disable();
+                }
+                lblPoints3.setText(String.valueOf(value));
+                lblPoints.setText(String.valueOf(points));
+                if (rbPoints.isSelected()) {
+                    lblResult3.setText(String.valueOf(value));
+                    updateModifiers();
+                }
+            }
+        });
+        btnPoints4Up.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int value = Integer.parseInt(lblPoints4.getText());
+                if (value < 13 && points > 0) {
+                    value++;
+                    points--;
+                } else if (value == 13 && points > 1) {
+                    value++;
+                    points = points - 2;
+                } else if (value == 14 && points > 1) {
+                    value++;
+                    points = points - 2;
+                    btnPoints4Up.disable();
+                }
+                lblPoints4.setText(String.valueOf(value));
+                lblPoints.setText(String.valueOf(points));
+                if (rbPoints.isSelected()) {
+                    lblResult4.setText(String.valueOf(value));
+                    updateModifiers();
+                }
+            }
+        });
+        btnPoints4Down.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int value = Integer.parseInt(lblPoints4.getText());
+                if (value == 15 && points < 26) {
+                    value--;
+                    points = points + 2;
+                } else if (value == 14 && points < 26) {
+                    value--;
+                    points = points + 2;
+                } else if (value > 8 && points < 27) {
+                    value--;
+                    points++;
+                    btnPoints4Down.disable();
+                }
+                lblPoints4.setText(String.valueOf(value));
+                lblPoints.setText(String.valueOf(points));
+                if (rbPoints.isSelected()) {
+                    lblResult4.setText(String.valueOf(value));
+                    updateModifiers();
+                }
+            }
+        });
+        btnPoints5Up.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int value = Integer.parseInt(lblPoints5.getText());
+                if (value < 13 && points > 0) {
+                    value++;
+                    points--;
+                } else if (value == 13 && points > 1) {
+                    value++;
+                    points = points - 2;
+                } else if (value == 14 && points > 1) {
+                    value++;
+                    points = points - 2;
+                    btnPoints5Up.disable();
+                }
+                lblPoints5.setText(String.valueOf(value));
+                lblPoints.setText(String.valueOf(points));
+                if (rbPoints.isSelected()) {
+                    lblResult5.setText(String.valueOf(value));
+                    updateModifiers();
+                }
+            }
+        });
+        btnPoints5Down.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int value = Integer.parseInt(lblPoints5.getText());
+                if (value == 15 && points < 26) {
+                    value--;
+                    points = points + 2;
+                } else if (value == 14 && points < 26) {
+                    value--;
+                    points = points + 2;
+                } else if (value > 8 && points < 27) {
+                    value--;
+                    points++;
+                    btnPoints5Down.disable();
+                }
+                lblPoints5.setText(String.valueOf(value));
+                lblPoints.setText(String.valueOf(points));
+                if (rbPoints.isSelected()) {
+                    lblResult5.setText(String.valueOf(value));
+                    updateModifiers();
+                }
+            }
+        });
+        btnPoints6Up.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int value = Integer.parseInt(lblPoints6.getText());
+                if (value < 13 && points > 0) {
+                    value++;
+                    points--;
+                } else if (value == 13 && points > 1) {
+                    value++;
+                    points = points - 2;
+                } else if (value == 14 && points > 1) {
+                    value++;
+                    points = points - 2;
+                    btnPoints6Up.disable();
+                }
+                lblPoints6.setText(String.valueOf(value));
+                lblPoints.setText(String.valueOf(points));
+                if (rbPoints.isSelected()) {
+                    lblResult6.setText(String.valueOf(value));
+                    updateModifiers();
+                }
+            }
+        });
+        btnPoints6Down.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int value = Integer.parseInt(lblPoints6.getText());
+                if (value == 15 && points < 26) {
+                    value--;
+                    points = points + 2;
+                } else if (value == 14 && points < 26) {
+                    value--;
+                    points = points + 2;
+                } else if (value > 8 && points < 27) {
+                    value--;
+                    points++;
+                    btnPoints6Down.disable();
+                }
+                lblPoints6.setText(String.valueOf(value));
+                lblPoints.setText(String.valueOf(points));
+                if (rbPoints.isSelected()) {
+                    lblResult6.setText(String.valueOf(value));
+                    updateModifiers();
+                }
             }
         });
         spn1.addChangeListener(new ChangeListener() {
@@ -306,7 +616,7 @@ public class Stats extends JFrame {
                 previous6 = current;
             }
         });
-        
+
     }
 
     public void rolledTotalsUpdate() {
